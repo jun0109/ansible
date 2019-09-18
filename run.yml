@@ -1,0 +1,15 @@
+---
+- hosts: aaa
+  become: true
+  roles:
+#      - os_check
+#      - cpu_check
+#      - ram_check
+#      - network_check
+#      - mount_check
+#      - harbor
+#      - k8s_master
+      - k8s_node
+  vars:
+    aaa: var.yml
+    bbb: var.yml

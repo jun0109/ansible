@@ -1,0 +1,27 @@
+---
+  - fail: msg="something wrong !!!"
+    when: 
+    - ansible_distribution !=  ansibledistribution 
+
+  - name: ansible_distribution = "{{ ansibledistribution }}"
+    debug:     
+      msg: ansible_{{ item }} check OK!
+    with_items: "{{ ansible_distribution }}"
+
+  - fail: msg="something wrong !!!"
+    when:
+    - ansible_distribution_version != ansibledistributionversion
+
+  - name: ansible_distribution_version = "{{ansibledistributionversion}}"
+    debug: 
+      msg: ansible_{{ item }} check OK!
+    with_items: "{{ ansible_distribution_version }}"
+
+  - fail: msg="something wrong !!!"
+    when:
+    - ansible_kernel != ansiblekernel
+
+  - name: ansible_kernel = "{{ansiblekernel}}"
+    debug: 
+      msg: ansible_{{ item }} check OK!
+    with_items: "{{ ansible_kernel }}"

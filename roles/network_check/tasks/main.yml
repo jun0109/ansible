@@ -1,0 +1,9 @@
+---
+  - fail: msg="something wrong !!!"
+    when:
+    - ansible_interfaces[1] != ansibleinterfaces
+  
+  - name: interfaces = "{{ ansibleinterfaces }}"
+    debug:
+      msg: ansible_{{ item }} check OK!
+    with_items: "{{ ansible_interfaces[1] }}"

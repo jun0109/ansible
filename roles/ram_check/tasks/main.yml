@@ -1,0 +1,8 @@
+---
+  - fail: msg="something wrong !!!"
+    when:
+    - ansible_memtotal_mb != ansiblememtotalmb
+  - name: ansible_memtotal_mb = "{{ansiblememtotalmb}}"
+    debug: 
+      msg: ansible_{{ item }} check OK!
+    with_items: "{{ ansible_memtotal_mb }}"

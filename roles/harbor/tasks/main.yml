@@ -1,0 +1,28 @@
+---
+  - name: login
+    shell: "docker login {{ harborip }} -u {{ harboraccount }} -p {{ harborpassword }}"
+
+  - name: pull images on harbor
+    shell: docker pull {{ harborip }}/{{ harborrepository }}:{{ harborlatesttag }}
+
+  - name: delete harbor latest tag images
+    shell: curl -u admin:Harbor12345 -i -k -X DELETE "http://192.168.152.7:30002/api/repositories/library/test/tags/latest"
+
+  - name: tag images and push to harbor
+    shell: |
+      docker tag {{ harborip }}/{{ harborrepository }}:{{ harborlatesttag }} {{ harborip }}/{{ harborrepository }}:{{ mount }}
+      docker push {{ harborip }}/{{ harborrepository }}:{{ mount }}
+    vars:
+      mount: "{{ ansible_date_time.date }}"
+
+  - name: wait on user input
+    pause: prompt="Warning! Detected slight issue. ENTER to continue CTRL-C a to quit"
+
+  - name: delete local latest images
+    shell: docker rmi {{ harborip }}/{{ harborrepository }}:{{ harborlatesttag }}
+
+  - name: tag last images in local
+    shell: docker tag {{ lastimagename }}:{{ lastimagetag }} {{ harborip }}/{{ harborrepository }}:{{ harborlatesttag }}
+
+  - name: push last images tag latest to harbor
+    shell: docker push {{ harborip }}/{{ harborrepository }}:{{ harborlatesttag }}

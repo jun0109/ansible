@@ -1,0 +1,11 @@
+---
+ansibledistribution: Ubuntu
+ansibledistributionversion: '7.3'
+ansiblekernel: 3.10.0-514.el7.x86_64
+ansibleprocessorcores: 1
+ansiblememtotalmb: 1839
+ansibleinterfaces: enp0s3
+diskboot: 1063256064
+disk: 18238930944
+bootname: /boot
+bootnametop: /

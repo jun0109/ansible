@@ -1,0 +1,39 @@
+---
+ansibledistribution: CentOS
+ansibledistributionversion: '7.3'
+ansiblekernel: 3.10.0-514.el7.x86_64
+ansibleprocessorcores: 1
+ansiblememtotalmb: 1839
+ansibleinterfaces: enp0s3
+diskboot: 1063256064
+disk: 18238930944
+bootname: /boot
+bootnametop: /
+
+harboraccount: admin
+harborpassword: Harbor12345
+harborip: 192.168.152.7:30002
+harborlatesttag: latest
+harborrepository: library/test
+timenow: ansible_date_time.date
+lastimagename: junlichung/nginxfinal
+lastimagetag: vvv
+
+#[k8s master]
+master_hostname: master
+master_hostname_ip: 192.168.154.195
+kubeadm_token: 0vfzfl.2fkdglgf2hsq6ddk
+kubeadm_token_sha256: d25b827d7a1ef7f018f0c7fa875954ff340453ce46d56b6d08889f8fcf53657a
+pod_network_cidr_network: 10.244.0.0/16
+service_cidr_network: 10.96.0.0/12
+
+#[k8s node01]
+node_hostname: node01
+node_hostname_ip: 192.168.154.122
+
+#[k8s packages]
+kubelet_version: 1.15.2
+kubectl_version: 1.15.2
+kubeadm_version: 1.15.2
+docker_version: 18.09.8
+k8s_version: v1.15.2

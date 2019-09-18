@@ -1,0 +1,12 @@
+---    
+  - name: "{{ bootname }}"
+    assert:
+      that: mount.size_total == diskboot
+    vars:
+      mount: "{{ ansible_mounts | selectattr('mount','equalto', bootname) | list | first }}"
+
+  - name: "{{ bootnametop }}"
+    assert:
+      that: mount.size_total == disk
+    vars:
+      mount: "{{ ansible_mounts | selectattr('mount','equalto', bootnametop) | list | first }}"

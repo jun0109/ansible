@@ -1,0 +1,44 @@
+version: '3'
+services:
+  php-fpm:
+    image: php-fpm:latest
+    container_name: php
+    restart: always
+    ports:
+      - "9000:9000"
+    expose:
+      - "9000"
+    volumes:
+      - /home/docker/php/php/html:/var/www/html
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+  mysql:
+    image: mysql:5.6
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "8888:80"
+    expose:
+      - "80"
+    links:
+      - php-fpm
+      - redis
+      - mysql
+    volumes:
+      - /home/docker/php/nginx/log:/var/log/nginx

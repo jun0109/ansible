@@ -1,0 +1,9 @@
+---  
+  - fail: msg="something wrong !!!"
+    when: 
+    - ansible_processor_cores != ansibleprocessorcores
+
+  - name: ansible_processor_cores "{{ ansibleprocessorcores }}"
+    debug:
+      msg: ansible_{{ item }} check OK!
+    with_items: "{{ ansible_processor_cores }}"
